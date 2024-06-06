@@ -31,7 +31,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@iconify-json/ri": "^1.1.17",
-		"@melt-ui/pp": "^0.1.4",
+		"@melt-ui/pp": "^0.3.0",
 		"@melt-ui/svelte": "^0.81.0",
 		"@playwright/test": "^1.40.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
