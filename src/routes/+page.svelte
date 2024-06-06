@@ -26,7 +26,7 @@
 	</h1>
 </section>
 
-<section class="overflow-hidden">
+<section class="hidden overflow-hidden md:block lg:block">
 	<div
 		class="2xl:max-w-screen-3xl mx-auto flex h-svh max-w-screen-xl flex-col justify-center space-y-24 px-8 py-12 md:px-12 lg:py-24"
 	>

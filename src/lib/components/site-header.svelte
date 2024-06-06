@@ -9,7 +9,7 @@
 		</h1>
 		<div class="flex items-center gap-8">
 			<div class="flex items-center gap-4">
-				<div class="hidden [@media(min-width:400px)]:block">
+				<div class="">
 					<a
 						role="button"
 						tabindex="0"
