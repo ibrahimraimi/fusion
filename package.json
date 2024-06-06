@@ -13,7 +13,7 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"test:unit-coverage": "vitest --coverage",
-		"dbtypegen": "supabase gen types typescript --project-id qbmycnemttkukygnvmbu > src/types/db-generated.types.ts"
+		"dbtypegen": "supabase gen types typescript --project-id vgcqayaqpxwiameuiqij > src/types/db-generated.types.ts"
 	},
 	"author": {
 		"name": "Ibrahim Raimi",
