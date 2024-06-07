@@ -1,5 +1,7 @@
 <script>
-	import "../app.pcss";
+	import "$lib/styles/app.pcss";
+	import "$lib/styles/theme.pcss";
+
 	import Metadata from "$lib/components/metadata.svelte";
 	import SiteHeader from "$lib/components/site-header.svelte";
 	import AudioPlayer from "$lib/components/audio-player.svelte";
