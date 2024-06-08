@@ -76,6 +76,8 @@
 		"satori": "^0.10.11",
 		"sharp": "^0.32.6",
 		"svelte-autosize": "^1.1.0",
-		"svelte-preprocess": "^5.1.2"
+		"svelte-preprocess": "^5.1.2",
+		"svelte-sequential-preprocessor": "^2.0.1",
+		"sveltekit-superforms": "^1.12.0"
 	}
 }
