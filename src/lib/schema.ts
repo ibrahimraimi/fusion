@@ -1,19 +1,29 @@
 import { z } from "zod";
 import type { Track } from "@spotify/web-api-ts-sdk";
 
+import type { Enums } from "$lib/types/types";
 import { MAX_CONTRIBUTOR_CHARS, MAX_DESCRIPTION_CHARS } from "./constants";
 
 export const newCoverSchema = z
 	.object({
 		original: z.custom<Track>(
 			(value) => (value as Track) !== undefined,
-			"Please select an original cover"
+			"Please select an original song"
 		),
+		originalGenders: z
+			.array(z.custom<Enums<"gender">>())
+			.nonempty("Please select at least one gender"),
 		cover: z.custom<Track>((value) => (value as Track) !== undefined, "Please select a cover song"),
+		coverGenders: z
+			.array(z.custom<Enums<"gender">>())
+			.nonempty("Please select at least one gender"),
 		description: z
 			.string()
 			.trim()
-			.max(MAX_DESCRIPTION_CHARS, `Description must be shorter ${MAX_DESCRIPTION_CHARS} characters`)
+			.max(
+				MAX_DESCRIPTION_CHARS,
+				`Description must be shorter than ${MAX_DESCRIPTION_CHARS} characters`
+			)
 			.optional()
 			.default(""),
 		contributor: z

@@ -1,61 +1,430 @@
 <script lang="ts">
-	import { Button, Link } from "@significa/svelte-ui";
+	import { page } from "$app/stores";
+	import { goto } from "$app/navigation";
+	import { scale } from "svelte/transition";
+	import type { FocusEventHandler, FormEventHandler, KeyboardEventHandler } from "svelte/elements";
+
+	import type { Enums } from "$lib/types/types.js";
+	import CoverCard from "$lib/components/cover-card.svelte";
+	import { TAGS, ORDERED_TAG_GROUPS } from "$lib/constants.js";
+
+	import SearchIcon from "~icons/ri/search-line";
+	import ArrowLeftIcon from "~icons/ri/arrow-left-line";
+	import ArrowRightIcon from "~icons/ri/arrow-right-line";
+	import CloseCircleIcon from "~icons/ri/close-circle-fill";
+
+	export let data;
+
+	let isFocused = false;
+	let currentQuery = "";
+
+	$: if (!isFocused) {
+		currentQuery = $page.url.searchParams.get("q") || "";
+	}
+	$: currentPage = Number($page.url.searchParams.get("page")) || 1;
+	$: currentTag = $page.url.searchParams.get("tag") as Enums<"tags"> | null;
+
+	let debounceTimer: ReturnType<typeof setTimeout>;
+	const debounce = (callback: () => void) => {
+		clearTimeout(debounceTimer);
+		debounceTimer = setTimeout(callback, 250);
+	};
+
+	const handleSearch: FormEventHandler<HTMLInputElement> = (e) => {
+		currentQuery = e.currentTarget.value;
+		const newURL = new URL($page.url);
+		newURL.searchParams.delete("page");
+
+		if (currentQuery) {
+			newURL.searchParams.set("q", currentQuery);
+		} else {
+			newURL.searchParams.delete("q");
+		}
+
+		debounce(() => goto(newURL, { keepFocus: true, replaceState: true }));
+	};
+
+	const handleClearSearch = () => {
+		const newURL = new URL($page.url);
+		newURL.searchParams.delete("tag");
+		newURL.searchParams.delete("q");
+		goto(newURL, { keepFocus: true, replaceState: true });
+	};
+
+	const handleKeydown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+		if (e.key === "Backspace" && currentQuery === "") {
+			handleClearSearch();
+		}
+	};
+
+	const handleFocus: FocusEventHandler<HTMLInputElement> = () => {
+		isFocused = true;
+	};
+
+	const handleBlur: FocusEventHandler<HTMLInputElement> = () => {
+		isFocused = false;
+	};
+
+	const handleTagClick = (tag: Enums<"tags"> | null) => {
+		const newURL = new URL($page.url);
+		newURL.searchParams.delete("page");
+
+		if (currentTag === tag || tag === null) {
+			newURL.searchParams.delete("tag");
+		} else {
+			newURL.searchParams.set("tag", tag);
+		}
+
+		goto(newURL);
+	};
+
+	const handleBack = () => {
+		if (currentPage > 1) {
+			const newURL = new URL($page.url);
+			const newPage = currentPage - 1;
+
+			newPage === 1
+				? newURL.searchParams.delete("page")
+				: newURL.searchParams.set("page", newPage.toString());
+
+			goto(newURL);
+		}
+	};
+
+	const handleNext = () => {
+		const newURL = new URL($page.url);
+		newURL.searchParams.set("page", (currentPage + 1).toString());
+		goto(newURL);
+	};
 </script>
 
-<section class="container mx-auto px-container">
-	<h1 class="mt-10 text-7xl font-bold md:mt-14 lg:mt-20">
-		<span
-			style="opacity: 1; transform: translateY(0);"
-			class=" mr-1 inline-block transition-all duration-500 ease-motion">Discover.</span
-		>
-		<span
-			style="opacity: 1; transform: translateY(0);"
-			class=" mr-1 inline-block transition-all duration-500 ease-motion">The Story.</span
-		> <br /><span
-			style="opacity: 1; transform: translateY(0);"
-			class=" mr-1 inline-block transition-all duration-500 ease-motion">Behind.</span
-		>
-		<span
-			style="opacity: 1; transform: translateY(0);"
-			class=" mr-1 inline-block transition-all duration-500 ease-motion">The.</span
-		> <br /><span
-			style="opacity: 1; transform: translateY(0);"
-			class=" mr-1 inline-block text-foreground-secondary transition-all duration-500 ease-motion"
-			>Music.</span
-		>
-	</h1>
-</section>
+<main class="px-container">
+	<section>
+		<h1 class="mt-10 text-7xl font-bold md:mt-14 lg:mt-20">
+			<span
+				style="opacity: 1; transform: translateY(0);"
+				class=" mr-1 inline-block transition-all duration-500 ease-motion">Discover.</span
+			>
+			<span
+				style="opacity: 1; transform: translateY(0);"
+				class=" mr-1 inline-block transition-all duration-500 ease-motion">The Story.</span
+			> <br /><span
+				style="opacity: 1; transform: translateY(0);"
+				class=" mr-1 inline-block transition-all duration-500 ease-motion">Behind.</span
+			>
+			<span
+				style="opacity: 1; transform: translateY(0);"
+				class=" mr-1 inline-block transition-all duration-500 ease-motion">The.</span
+			> <br /><span
+				style="opacity: 1; transform: translateY(0);"
+				class=" mr-1 inline-block text-foreground-secondary transition-all duration-500 ease-motion"
+				>Music.</span
+			>
+		</h1>
+	</section>
 
-<section class="hidden overflow-hidden md:block lg:block">
-	<div
-		class="2xl:max-w-screen-3xl mx-auto flex h-svh max-w-screen-xl flex-col justify-center space-y-24 px-8 py-12 md:px-12 lg:py-24"
-	>
-		<div class="mx-auto flex flex-col sm:flex-row">
-			<a href="#_">
-				<img
-					src="https://images.unsplash.com/photo-1530035415911-95194de4ebcc?q=80&amp;w=2670&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-					class="h-full w-full origin-bottom rotate-6 transform rounded-xl object-cover duration-500 hover:-translate-y-12 hover:rotate-0 hover:scale-150"
-					alt="#_"
-				/>
-			</a><a href="#_">
-				<img
-					src="https://images.unsplash.com/photo-1487180144351-b8472da7d491?q=80&amp;w=2672&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D "
-					class="h-full w-full origin-bottom -rotate-12 transform rounded-xl object-cover duration-500 hover:-translate-y-12 hover:rotate-0 hover:scale-150"
-					alt="#_"
-				/>
-			</a><a href="#_">
-				<img
-					src="https://images.unsplash.com/photo-1586996292898-71f4036c4e07?q=80&amp;w=2670&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-					class="h-full w-full origin-bottom rotate-6 transform rounded-xl object-cover duration-500 hover:-translate-y-12 hover:rotate-0 hover:scale-150"
-					alt="#_"
-				/>
-			</a><a href="#_">
-				<img
-					src="https://images.unsplash.com/photo-1522775417749-29284fb89f43?q=80&amp;w=2574&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-					class="h-full w-full origin-bottom -rotate-12 transform rounded-xl object-cover duration-500 hover:-translate-y-12 hover:rotate-0 hover:scale-150"
-					alt="#_"
-				/>
-			</a>
+	<section class="header mt-10">
+		<div aria-label="Search" class="searchWrapper">
+			<div class="searchIcon">
+				<SearchIcon />
+			</div>
+			{#if currentTag}
+				<button class="tag active" on:click={() => handleTagClick(null)}
+					>{TAGS[currentTag].label}
+					<span class="clear">
+						<CloseCircleIcon />
+					</span>
+				</button>
+			{/if}
+			<input
+				class="searchInput"
+				id="search"
+				type="search"
+				placeholder="Search covers…"
+				value={currentQuery}
+				on:input={handleSearch}
+				on:keydown={handleKeydown}
+				on:focus={handleFocus}
+				on:blur={handleBlur}
+			/>
+			{#if currentQuery.length > 0}
+				<button
+					class="searchClear"
+					on:click={handleClearSearch}
+					transition:scale={{ duration: 200, start: 0.5 }}
+				>
+					<CloseCircleIcon />
+				</button>
+			{/if}
 		</div>
-	</div>
-</section>
+		<div class="tags">
+			{#each ORDERED_TAG_GROUPS as tagGroup}
+				<div class="tag-group">
+					{#each tagGroup as tag}
+						<button
+							class="tag"
+							class:selected={currentTag === tag}
+							on:click={() => handleTagClick(tag)}
+							title={TAGS[tag].description}
+						>
+							{TAGS[tag].shortLabel ?? TAGS[tag].label}
+						</button>
+					{/each}
+				</div>
+			{/each}
+		</div>
+	</section>
+</main>
+
+<style lang="scss">
+	.header {
+		padding-inline: var(--space-m);
+	}
+
+	.searchWrapper {
+		display: flex;
+		align-items: center;
+		gap: var(--space-s);
+		background: var(--mauve-3);
+		border-radius: var(--radius-full);
+		height: calc(var(--space-2xl) + var(--space-s));
+		padding-inline: var(--space-m);
+
+		&:focus-within {
+			outline: 3px solid #fee376;
+			outline-offset: 3px;
+		}
+	}
+
+	.searchIcon {
+		flex-shrink: 0;
+		fill: currentColor;
+	}
+
+	.searchInput {
+		background: transparent;
+		border: none;
+		min-width: 0;
+		flex: 1;
+		height: 100%;
+
+		&::placeholder {
+			color: var(--mauve-8);
+		}
+
+		&::-webkit-search-decoration,
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-results-button,
+		&::-webkit-search-results-decoration {
+			-webkit-appearance: none;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.searchClear {
+		all: unset;
+		cursor: pointer;
+		color: var(--mauve-11);
+		flex-shrink: 0;
+
+		&:hover {
+			color: var(--mauve-12);
+		}
+	}
+
+	.tags {
+		margin-block-start: var(--space-s);
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-2xs);
+		overflow-x: scroll;
+		margin-inline: calc(var(--space-m) * -1);
+		padding-inline: var(--space-m);
+		@supports (padding: max(0px)) {
+			padding-inline: max(var(--space-m), env(safe-area-inset-right));
+			margin-inline: calc(max(var(--space-m), env(safe-area-inset-right)) * -1);
+		}
+		// Hide scrollbars on Chrome, Safari
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		-ms-overflow-style: none; // Edge
+		scrollbar-width: none; // Firefox
+	}
+
+	.tag-group {
+		display: flex;
+		align-items: flex-start;
+		min-width: 0;
+		flex-shrink: 0;
+		background: var(--mauve-3);
+		border-radius: var(--radius-s);
+	}
+
+	.tag {
+		all: unset;
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2xs);
+		background: var(--mauve-3);
+		color: var(--mauve-11);
+		padding-block: var(--space-2xs);
+		padding-inline: var(--space-s);
+		border-radius: var(--radius-s);
+		position: relative;
+		flex-shrink: 0;
+		min-width: 0;
+
+		&:not(.selected):not(:hover) + :not(.selected):not(:hover)::before {
+			content: "";
+			height: 50%;
+			width: 1px;
+			background: var(--mauve-6);
+			position: absolute;
+			left: -0.5px;
+		}
+
+		&:hover {
+			background: var(--mauve-4);
+			cursor: pointer;
+
+			.clear {
+				color: var(--mauve-1);
+			}
+		}
+
+		&.selected {
+			background: var(--mauve-5);
+		}
+
+		&.active {
+			background: var(--mauve-12);
+			color: var(--mauve-1);
+		}
+
+		.clear {
+			color: var(--mauve-9);
+			font-size: 0.8em;
+		}
+	}
+
+	.coversGrid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-3xl) * 4), 1fr));
+		grid-template-rows: max-content;
+		align-items: center;
+		gap: var(--space-xl);
+		row-gap: var(--space-2xl);
+		padding-block: var(--space-2xl);
+		@supports (padding: max(0px)) {
+			padding-inline-start: max(var(--space-l), env(safe-area-inset-left));
+			padding-inline-end: max(var(--space-l), env(safe-area-inset-right));
+		}
+		@media (max-width: 1100px) {
+			grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-3xl) * 3.5), 1fr));
+		}
+		@media (max-width: 580px) {
+			grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-3xl) * 3), 1fr));
+		}
+	}
+
+	.empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		flex: 1;
+		gap: var(--space-l);
+		padding-block-end: var(--space-3xl);
+
+		p {
+			font-size: var(--step-1);
+		}
+	}
+
+	.button {
+		background: var(--mauve-12);
+		color: var(--mauve-1);
+		border: none;
+		cursor: pointer;
+		border-radius: var(--radius-full);
+		padding-block: var(--space-s);
+		padding-inline: var(--space-xl);
+		margin-inline: auto;
+		font-size: var(--step-1);
+		font-weight: var(--font-weight-bold);
+
+		@media (hover: hover) and (pointer: fine) {
+			&:hover {
+				background: var(--pink-9);
+				color: white;
+			}
+		}
+
+		&:focus {
+			outline: 3px solid var(--pink-a9);
+			outline-offset: 3px;
+		}
+	}
+
+	.pagination {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-s);
+		align-items: center;
+		margin-inline: auto;
+		margin-block-end: var(--space-xl);
+
+		.buttons {
+			display: flex;
+			gap: var(--space-s);
+		}
+
+		button {
+			background: var(--mauve-12);
+			color: var(--mauve-1);
+			border: none;
+			cursor: pointer;
+			display: inline-flex;
+			gap: var(--space-s);
+			align-items: center;
+			border-radius: var(--radius-full);
+			padding-block: var(--space-s);
+			padding-inline: var(--space-l);
+			font-size: var(--step-1);
+			font-weight: var(--font-weight-bold);
+			font-feature-settings: var(--font-unstable);
+
+			&:first-child {
+				padding-inline-start: var(--space-m);
+			}
+
+			&:last-child {
+				padding-inline-end: var(--space-m);
+			}
+
+			@media (hover: hover) and (pointer: fine) {
+				&:not([disabled]):hover {
+					background: var(--pink-9);
+					color: white;
+				}
+			}
+
+			&[disabled] {
+				background-color: var(--mauve-4);
+				color: var(--mauve-8);
+				cursor: default;
+			}
+
+			&:focus {
+				outline: 3px solid var(--pink-a9);
+				outline-offset: 3px;
+			}
+		}
+	}
+</style>
