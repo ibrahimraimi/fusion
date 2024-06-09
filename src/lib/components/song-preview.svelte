@@ -248,8 +248,8 @@
 				color: var(--mauve-1);
 
 				&:hover {
-					background: var(--pink-9);
-					color: white;
+					background: #fee376;
+					color: rgb(0, 0, 0);
 				}
 			}
 

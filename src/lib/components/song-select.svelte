@@ -50,7 +50,7 @@
 
 	const checkForExistingCover = async (track: Track) => {
 		try {
-			const response = await fetch(`/api/getCover?id=${track.id}`, {
+			const response = await fetch(`/api/get-cover?id=${track.id}`, {
 				method: "GET"
 			});
 
@@ -64,7 +64,7 @@
 
 	const checkForEarlierRelease = async (track: Track) => {
 		try {
-			const response = await fetch(`/api/getEarliestRelease?id=${track.id}`, {
+			const response = await fetch(`/api/get-earliest-release?id=${track.id}`, {
 				method: "GET"
 			});
 
@@ -86,7 +86,7 @@
 			const trackId = query.split("/track/")[1].split("?")[0];
 
 			try {
-				const response = await fetch(`/api/getSpotifyTrack?id=${trackId}`, {
+				const response = await fetch(`/api/get-spotify-track?id=${trackId}`, {
 					method: "GET"
 				});
 				const data = await response.json();
@@ -101,7 +101,7 @@
 		} else {
 			try {
 				const encoded = encodeSearchQuery(query);
-				const response = await fetch(`/api/getSpotifyResults?q=${encoded}`, {
+				const response = await fetch(`/api/get-spotify-results?q=${encoded}`, {
 					method: "GET"
 				});
 				const data = await response.json();
