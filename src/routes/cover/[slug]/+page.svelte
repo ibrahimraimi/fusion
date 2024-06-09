@@ -87,7 +87,7 @@
 		name="description"
 		content={data.description ?? "Some covers deliver the age-old simple pleasures of drag."}
 	/>
-	<link rel="canonical" href={`https://genderswap.fm${$page.url.pathname}`} />
+	<link rel="canonical" href={`https://fusion.ibrahimraimi.com${$page.url.pathname}`} />
 	<meta property="og:image" content={`${$page.url.pathname}/og.png`} />
 	<meta property="og:image:alt" content={data.pageTitle} />
 </svelte:head>

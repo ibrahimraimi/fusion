@@ -174,6 +174,51 @@
 			{/each}
 		</div>
 	</section>
+
+	{#await data}
+		<div class="coversGrid">
+			{#each [...Array(12)] as []}
+				<CoverCard />
+			{/each}
+		</div>
+	{:then value}
+		{#if value.covers === null || value.covers.length === 0}
+			<div class="empty pt-5">
+				<p>No covers found.</p>
+			</div>
+		{:else}
+			<div class="coversGrid">
+				{#each value.covers as cover, index}
+					<CoverCard
+						original={cover.original}
+						cover={cover.cover}
+						slug={cover.slug}
+						lazy={index > 5}
+					/>
+				{/each}
+			</div>
+			<div class="pagination">
+				{#if data.totalCount}
+					<div class="viewingCount">
+						Viewing {data.from + 1}–{Math.min(data.to + 1, data.totalCount)} of{" "}
+						{data.totalCount} covers
+					</div>
+				{/if}
+				{#if !(data.isFirst && data.isLast)}
+					<div class="buttons">
+						<button type="button" disabled={data.isFirst} on:click={handleBack}
+							><ArrowLeftIcon />Back</button
+						>
+						<button type="button" disabled={data.isLast} on:click={handleNext}
+							>Next<ArrowRightIcon /></button
+						>
+					</div>
+				{/if}
+			</div>
+		{/if}
+	{:catch error}
+		{error.message}
+	{/await}
 </main>
 
 <style lang="scss">

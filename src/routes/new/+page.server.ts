@@ -24,7 +24,7 @@ export const actions = {
 		const { original, originalGenders, cover, coverGenders, description, contributor } = form.data;
 
 		const formatSongRow = async ({ song, gender }: { song: Track; gender: Enums<"gender">[] }) => {
-			const response = await fetch(`/api/getAudioFeatures?id=${song.id}`, {
+			const response = await fetch(`/api/get-audio-features?id=${song.id}`, {
 				method: "GET"
 			});
 			const audioFeatures = await response.json();
