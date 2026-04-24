@@ -67,7 +67,8 @@ export const actions = {
 				loudness: features.loudness,
 				speechiness: features.speechiness,
 				tempo: features.tempo,
-				valence: features.valence
+				valence: features.valence,
+				previewUrl: track.preview_url
 			};
 		};
 

@@ -29,7 +29,9 @@ export const load = async ({ params }) => {
 				loudness: originalSongs.loudness,
 				speechiness: originalSongs.speechiness,
 				tempo: originalSongs.tempo,
-				valence: originalSongs.valence
+				valence: originalSongs.valence,
+				previewUrl: originalSongs.previewUrl,
+				url: originalSongs.url
 			},
 			cover: {
 				name: coverSongs.name,
@@ -44,7 +46,9 @@ export const load = async ({ params }) => {
 				loudness: coverSongs.loudness,
 				speechiness: coverSongs.speechiness,
 				tempo: coverSongs.tempo,
-				valence: coverSongs.valence
+				valence: coverSongs.valence,
+				previewUrl: coverSongs.previewUrl,
+				url: coverSongs.url
 			}
 		})
 		.from(covers)

@@ -49,9 +49,19 @@
 						Fusion is a discovery platform for <span class="underline decoration-black decoration-2 underline-offset-4">music covers</span> that share a narrative, vibe, or seamless transition.
 						Built for the <span class="underline decoration-black decoration-2 underline-offset-4">curious listener</span> and the <span class="underline decoration-black decoration-2 underline-offset-4">storyteller</span>.
 					</p>
-					
+
 					<p class="mt-4 font-sans text-xs font-bold leading-relaxed tracking-tight text-black uppercase md:text-sm">
-						Site by <span class="underline decoration-black decoration-2 underline-offset-4">ED.</span>, inspired by the <span class="underline decoration-black decoration-2 underline-offset-4">Australian music industry</span> and the <span class="underline decoration-black decoration-2 underline-offset-4">art of the zine</span>.
+						Site by <span class="underline decoration-black decoration-2 underline-offset-4"
+							><a href="http://x.com/ibrahimraimi_" target="_blank" rel="noopener noreferrer"
+								>Metro</a
+							></span
+						>, inspired by <a
+							href="https://ausify.com.au"
+							target="_blank"
+							rel="noopener noreferrer"
+							><span class="underline decoration-black decoration-2 underline-offset-4">Ausify</span
+							></a
+						>.
 					</p>
 
 					<!-- Logo area -->

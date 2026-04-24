@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Metadata from '$lib/components/metadata.svelte';
+	import AudioPlayer from '$lib/components/audio-player.svelte';
 	let { data } = $props();
 	const cover = data.cover;
 
@@ -45,6 +46,13 @@
 
 	<div class="grid grid-cols-1 gap-20 lg:grid-cols-3">
 		<div class="lg:col-span-2 space-y-12">
+			<AudioPlayer 
+				tracks={[
+					{ name: cover.cover.name, artists: cover.cover.artists, previewUrl: cover.cover.previewUrl, albumImg: cover.cover.albumImg, url: cover.cover.url },
+					{ name: cover.original.name, artists: cover.original.artists, previewUrl: cover.original.previewUrl, albumImg: cover.original.albumImg, url: cover.original.url }
+				]} 
+			/>
+
 			<section class="zine-border border-white/20 p-8">
 				<h2 class="mb-6 font-serif text-3xl font-bold uppercase tracking-tight text-neon-green">The Narrative</h2>
 				<p class="font-sans text-lg leading-relaxed text-white/80">

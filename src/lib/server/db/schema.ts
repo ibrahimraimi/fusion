@@ -20,6 +20,7 @@ export const songs = pgTable('songs', {
 	speechiness: real('speechiness'),
 	tempo: real('tempo'),
 	valence: real('valence'),
+	previewUrl: text('preview_url'),
 	createdAt: timestamp('created_at').defaultNow()
 });
 
