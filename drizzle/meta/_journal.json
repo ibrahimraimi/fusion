@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1776960897875,
-      "tag": "0000_hesitant_nebula",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1777031318579,
-      "tag": "0001_fearless_snowbird",
+      "when": 1777034874397,
+      "tag": "0000_rapid_captain_flint",
       "breakpoints": true
     }
   ]

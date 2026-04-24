@@ -69,7 +69,7 @@
 					<input type="hidden" name="originalId" bind:value={$form.originalId} />
 
 					{#if originalResults.length > 0}
-						<div class="zine-border max-h-80 overflow-y-auto bg-black shadow-[10px_10px_0px_var(--neon-green)]">
+						<div class="zine-border zine-scrollbar zine-scrollbar-neon max-h-80 overflow-y-auto bg-black shadow-[10px_10px_0px_var(--neon-green)]">
 							{#each originalResults as track}
 								<button
 									type="button"
@@ -107,7 +107,7 @@
 					<input type="hidden" name="coverId" bind:value={$form.coverId} />
 
 					{#if coverResults.length > 0}
-						<div class="zine-border max-h-80 overflow-y-auto bg-black shadow-[10px_10px_0px_var(--purple)]">
+						<div class="zine-border zine-scrollbar zine-scrollbar-purple max-h-80 overflow-y-auto bg-black shadow-[10px_10px_0px_var(--purple)]">
 							{#each coverResults as track}
 								<button
 									type="button"

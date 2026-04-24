@@ -25,8 +25,7 @@ export const load = async () => {
 		.from(covers)
 		.innerJoin(originalSongs, eq(covers.originalId, originalSongs.id))
 		.innerJoin(coverSongs, eq(covers.coverId, coverSongs.id))
-		.orderBy(desc(covers.createdAt))
-		.limit(4);
+		.orderBy(desc(covers.createdAt));
 
 	return {
 		covers: allCovers

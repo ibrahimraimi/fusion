@@ -24,6 +24,13 @@
 		</a>
 
 		<nav class="flex gap-8">
+			<a
+				href="/covers"
+				class="font-sans text-[10px] font-bold tracking-[0.2em] text-white uppercase transition-colors hover:text-purple"
+				class:text-purple={page.url.pathname.includes('/covers')}
+			>
+				Discover
+			</a>
 			<button
 				onclick={onToggleAbout}
 				class="font-sans text-[10px] font-bold tracking-[0.2em] text-white uppercase transition-colors hover:text-pink cursor-pointer"

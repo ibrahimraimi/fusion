@@ -1,5 +1,5 @@
 export const siteConfig = {
-	name: 'Fusion Cover',
+	name: 'Fusion',
 	description: 'A discovery platform for music covers that share a narrative, vibe, or seamless transition.',
 	url: 'https://fusion-cover.vercel.app', // Update with actual URL when deployed
 	ogImage: 'https://fusion-cover.vercel.app/og.png',

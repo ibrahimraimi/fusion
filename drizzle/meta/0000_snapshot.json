@@ -1,5 +1,5 @@
 {
-  "id": "83c33144-1876-4d7f-a4c7-ef8435594e23",
+  "id": "87236086-091c-4154-934d-e276ea8f0f68",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -205,6 +205,12 @@
         "valence": {
           "name": "valence",
           "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preview_url": {
+          "name": "preview_url",
+          "type": "text",
           "primaryKey": false,
           "notNull": false
         },

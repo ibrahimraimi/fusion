@@ -29,6 +29,7 @@ CREATE TABLE "songs" (
 	"speechiness" real,
 	"tempo" real,
 	"valence" real,
+	"preview_url" text,
 	"created_at" timestamp DEFAULT now()
 );
 --> statement-breakpoint

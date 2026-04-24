@@ -38,5 +38,11 @@
 				<CoverCard {cover} />
 			{/each}
 		</div>
+
+		<div class="mt-12 flex justify-center">
+			<a href="/covers" class="zine-border border-white px-8 py-4 font-sans text-xs font-black tracking-widest uppercase hover:bg-white hover:text-black transition-all">
+				Explore the Full Archive →
+			</a>
+		</div>
 	{/if}
 </main>

@@ -149,3 +149,42 @@
 	background-size: 100% 2px, 3px 100%;
 	pointer-events: none;
 }
+
+.zine-scrollbar::-webkit-scrollbar {
+	width: 8px;
+}
+
+.zine-scrollbar::-webkit-scrollbar-track {
+	background: black;
+	border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.zine-scrollbar::-webkit-scrollbar-thumb {
+	background: white;
+	border: 1px solid black;
+}
+
+.zine-scrollbar-neon::-webkit-scrollbar-thumb {
+	background: var(--neon-green);
+}
+
+.zine-scrollbar-purple::-webkit-scrollbar-thumb {
+	background: var(--purple);
+}
+
+.zine-scrollbar::-webkit-scrollbar-thumb:hover {
+	filter: brightness(1.2);
+}
+
+/* Firefox */
+.zine-scrollbar {
+	scrollbar-width: thin;
+}
+
+.zine-scrollbar-neon {
+	scrollbar-color: var(--neon-green) black;
+}
+
+.zine-scrollbar-purple {
+	scrollbar-color: var(--purple) black;
+}
