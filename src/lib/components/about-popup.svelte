@@ -40,8 +40,8 @@
 
 				<div class="text-center">
 					<p class="font-sans text-xs font-bold leading-relaxed tracking-tight text-black uppercase md:text-sm">
-						Fusion is a discovery platform for <span class="underline decoration-black decoration-2 underline-offset-4">music covers</span> that share a narrative, vibe, or seamless transition.
-						Built for the <span class="underline decoration-black decoration-2 underline-offset-4">curious listener</span> and the <span class="underline decoration-black decoration-2 underline-offset-4">storyteller</span>.
+						Fusion is a discovery platform for <span class="decoration-black decoration-2">music covers</span> that share a narrative, vibe, or seamless transition.
+						Built for the <span class="decoration-black decoration-2 font-bold italic">curious listener</span> and the <span class="decoration-black decoration-2 font-bold italic">storyteller</span>.
 					</p>
 
 					<p class="mt-4 font-sans text-xs font-bold leading-relaxed tracking-tight text-black uppercase md:text-sm">

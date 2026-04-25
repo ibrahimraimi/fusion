@@ -30,6 +30,11 @@
 			coverResults = results;
 			isSearchingCover = false;
 		}
+
+		// Auto-select if it's a direct link/ID search
+		if (results.length === 1 && (query.includes('spotify.com') || query.includes('spotify:track') || query.length === 22)) {
+			selectTrack(results[0], type);
+		}
 	}
 
 	function selectTrack(track: any, type: 'original' | 'cover') {
