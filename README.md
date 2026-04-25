@@ -1,5 +1,7 @@
 # Fusion
 
+![Banner](./static/banner.png)
+
 Fusion is a discovery platform designed for music lovers to find the "story behind the music." It curates and showcases music covers that share a common narrative, vibe, or seamless transition, leveraging the Spotify API to analyze musical DNA (energy, danceability, valence).
 
 ## Features
