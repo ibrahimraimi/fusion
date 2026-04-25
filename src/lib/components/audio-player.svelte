@@ -56,7 +56,7 @@
 </script>
 
 <div class="relative mx-auto mt-12 w-full max-w-md">
-	<div class="absolute -right-20 top-1/2 -translate-y-1/2 flex gap-4 opacity-20 pointer-events-none">
+	<div class="absolute -right-20 top-1/2 -translate-y-1/2 hidden gap-4 opacity-20 pointer-events-none md:flex">
 		<div class="h-24 w-24 rounded-full border-2 border-white/40 flex items-center justify-center">
 			<div class="h-8 w-8 rounded-full border border-white/40"></div>
 		</div>
@@ -69,7 +69,7 @@
 		<div class="flex flex-col items-center text-center">
 			<Volume2 size={32} class="mb-4 text-black" />
 			
-			<h3 class="mb-2 font-serif text-3xl font-bold italic leading-none tracking-tighter text-black uppercase">
+			<h3 class="mb-2 font-serif text-2xl font-bold italic leading-none tracking-tighter text-black uppercase md:text-3xl">
 				Listen to <br /> {currentTrack.name}
 			</h3>
 			

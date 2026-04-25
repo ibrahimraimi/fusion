@@ -10,10 +10,10 @@
 
 <main class="mx-auto max-w-7xl px-4 py-12 mt-12">
 	<section class="mb-20 text-center">
-		<h1 class="glitch-text mb-6 font-serif text-6xl font-bold italic tracking-tighter uppercase md:text-8xl" data-text="The Story Behind The Music">
+		<h1 class="glitch-text mb-6 font-serif text-4xl font-bold italic tracking-tighter uppercase sm:text-6xl md:text-8xl" data-text="The Story Behind The Music">
 			The Story Behind <br /> The Music
 		</h1>
-		<p class="mx-auto max-w-2xl font-sans text-lg font-medium tracking-wide text-white/60 uppercase">
+		<p class="mx-auto max-w-2xl font-sans text-base font-medium tracking-wide text-white/60 uppercase md:text-lg">
 			Curating music covers that share a narrative, vibe, or seamless transition.
 		</p>
 	</section>

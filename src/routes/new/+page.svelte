@@ -61,7 +61,7 @@
 		<div class="grid grid-cols-1 gap-12 md:grid-cols-2">
 			<!-- Original Song Search -->
 			<div class="relative space-y-6">
-				<div class="absolute -left-12 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 font-serif text-sm font-bold text-white">1</div>
+				<div class="absolute -top-4 left-0 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 font-serif text-xs font-bold text-white md:-left-12 md:top-0 md:h-8 md:w-8 md:text-sm">1</div>
 				<h2 class="font-serif text-3xl font-bold tracking-tighter uppercase italic">seleCt tHE ORIGInal</h2>
 				
 				<div class="space-y-4">
@@ -99,7 +99,7 @@
 
 			<!-- Cover Song Search -->
 			<div class="relative space-y-6">
-				<div class="absolute -left-12 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 font-serif text-sm font-bold text-white">2</div>
+				<div class="absolute -top-4 left-0 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 font-serif text-xs font-bold text-white md:-left-12 md:top-0 md:h-8 md:w-8 md:text-sm">2</div>
 				<h2 class="font-serif text-3xl font-bold tracking-tighter uppercase italic">seleCt tHE cOVER</h2>
 				
 				<div class="space-y-4">
@@ -137,7 +137,7 @@
 		</div>
 
 		<div class="relative space-y-8">
-			<div class="absolute -left-12 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 font-serif text-sm font-bold text-white">3</div>
+			<div class="absolute -top-4 left-0 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 font-serif text-xs font-bold text-white md:-left-12 md:top-0 md:h-8 md:w-8 md:text-sm">3</div>
 			<h2 class="font-serif text-3xl font-bold tracking-tighter uppercase italic">tHE stORy</h2>
 			<Input
 				label="The Story (Description)"
