@@ -21,12 +21,12 @@
 
 {#if visible}
 	<div
-		class="fixed top-24 right-4 z-100 md:right-8"
+		class="fixed top-24 right-4 z-100000 md:right-8"
 		transition:fly={{ x: 100, duration: 400 }}
 	>
 		<div class="zine-border bg-neon-green p-4 pr-12 shadow-[8px_8px_0px_white]">
 			<div class="flex items-center gap-3">
-				<CheckCircle2 size={18} class="text-black" />
+				<CheckCircle2 size={18} class="text-black" /> 
 				<p class="font-sans text-xs font-black tracking-tight text-black uppercase">
 					{message}
 				</p>

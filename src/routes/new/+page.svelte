@@ -5,7 +5,7 @@
 	import { superForm } from 'sveltekit-superforms';
 
 	let { data } = $props();
-	const { form, errors, enhance, constraints } = superForm(data.form);
+	const { form, errors, enhance, delayed } = superForm(data.form);
 
 	let originalQuery = $state('');
 	let coverQuery = $state('');
@@ -144,6 +144,8 @@
 				name="description"
 				placeholder="Why does this cover work? What's the narrative?"
 				bind:value={$form.description}
+				multiline={true}
+				rows={6}
 			/>
 
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -163,8 +165,8 @@
 		</div>
 
 		<div class="pt-8">
-			<Button type="submit" size="lg" class="w-full md:w-auto cursor-pointer">
-				Submit Cover Story
+			<Button type="submit" size="lg" disabled={$delayed} class="w-full md:w-auto cursor-pointer">
+				{$delayed ? 'Submitting...' : 'Submit Cover Story'}
 			</Button>
 		</div>
 	</form>

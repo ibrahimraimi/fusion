@@ -6,6 +6,7 @@ import { db } from '$lib/server/db';
 import { songs, covers } from '$lib/server/db/schema';
 import { getTrack, getTrackAudioFeatures, searchTracks } from '$lib/server/spotify';
 import { slugifyCover, removeSongExtraText } from '$lib/helpers';
+import { eq } from 'drizzle-orm';
 
 const schema = z.object({
 	originalId: z.string().min(1, 'Original song is required'),
@@ -77,7 +78,16 @@ export const actions = {
 			await db.insert(songs).values(originalRow).onConflictDoNothing();
 			await db.insert(songs).values(coverRow).onConflictDoNothing();
 
-			const slug = slugifyCover(originalRow.name, originalRow.artists[0]);
+			const baseSlug = slugifyCover(originalRow.name, originalRow.artists[0]);
+			let slug = baseSlug;
+			let counter = 1;
+
+			while (true) {
+				const existing = await db.select({ id: covers.id }).from(covers).where(eq(covers.slug, slug)).limit(1);
+				if (existing.length === 0) break;
+				slug = `${baseSlug}-${counter}`;
+				counter++;
+			}
 
 			await db.insert(covers).values({
 				originalId,

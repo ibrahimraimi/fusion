@@ -1,8 +1,11 @@
 <script lang="ts">
 	import Metadata from '$lib/components/metadata.svelte';
 	import AudioPlayer from '$lib/components/audio-player.svelte';
+	import Toast from '$lib/components/toast.svelte';
+	import { page } from '$app/state';
+
 	let { data } = $props();
-	const cover = data.cover;
+	let cover = $derived(data.cover);
 
 	const features = [
 		{ name: 'Energy', key: 'energy' },
@@ -12,6 +15,14 @@
 		{ name: 'Liveness', key: 'liveness' },
 		{ name: 'Speechiness', key: 'speechiness' }
 	];
+
+	let showSuccessToast = $state(false);
+
+	$effect(() => {
+		if (page.url.searchParams.get('new') === 'true') {
+			showSuccessToast = true;
+		}
+	});
 </script>
 
 <Metadata
@@ -21,6 +32,13 @@
 />
 
 <div class="crt-overlay"></div>
+
+{#if showSuccessToast}
+	<Toast 
+		message="Cover story added to the archive!" 
+		onclose={() => showSuccessToast = false} 
+	/>
+{/if}
 
 <main class="mx-auto max-w-5xl px-4 py-20">
 	<div class="mb-20 grid grid-cols-1 items-end gap-12 md:grid-cols-2">
