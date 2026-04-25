@@ -56,7 +56,6 @@
 </script>
 
 <div class="relative mx-auto mt-12 w-full max-w-md">
-	<!-- Background Vinyl Decoration -->
 	<div class="absolute -right-20 top-1/2 -translate-y-1/2 flex gap-4 opacity-20 pointer-events-none">
 		<div class="h-24 w-24 rounded-full border-2 border-white/40 flex items-center justify-center">
 			<div class="h-8 w-8 rounded-full border border-white/40"></div>
@@ -66,7 +65,6 @@
 		</div>
 	</div>
 
-	<!-- Player Card -->
 	<div class="zine-border relative z-10 bg-neon-green p-6 shadow-[8px_8px_0px_white]">
 		<div class="flex flex-col items-center text-center">
 			<Volume2 size={32} class="mb-4 text-black" />
@@ -79,7 +77,6 @@
 				by {currentTrack.artists.join(', ')}
 			</p>
 
-			<!-- Step Indicators (from design) -->
 			<div class="mb-8 flex items-center gap-2">
 				<span class="font-sans text-[8px] font-black uppercase text-black/40">Step</span>
 				{#each tracks as _, i}
@@ -90,7 +87,6 @@
 				{/each}
 			</div>
 
-			<!-- Controls -->
 			<div class="flex items-center gap-8">
 				<button onclick={prevTrack} class="text-black/40 hover:text-black transition-colors">
 					<SkipBack size={24} />
@@ -128,7 +124,6 @@
 			</a>
 		</div>
 
-		<!-- Progress Bar -->
 		<div class="absolute bottom-0 left-0 h-1 bg-black/10 transition-all" style="width: 100%">
 			<div class="h-full bg-black transition-all" style="width: {progress}%"></div>
 		</div>

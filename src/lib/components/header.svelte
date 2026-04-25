@@ -5,7 +5,6 @@
 </script>
 
 <header class="sticky top-0 z-50 bg-black">
-	<!-- Top Bar -->
 	<div class="h-4 w-full bg-pink shadow-[0_0_15px_rgba(255,102,255,0.5)]"></div>
 
 	<div class="mx-auto flex max-w-7xl items-center justify-between p-4">

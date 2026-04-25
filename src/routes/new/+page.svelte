@@ -158,7 +158,7 @@
 		</div>
 
 		<div class="pt-8">
-			<Button type="submit" size="lg" class="w-full md:w-auto">
+			<Button type="submit" size="lg" class="w-full md:w-auto cursor-pointer">
 				Submit Cover Story
 			</Button>
 		</div>

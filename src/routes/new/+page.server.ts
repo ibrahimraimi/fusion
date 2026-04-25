@@ -31,24 +31,22 @@ export const actions = {
 
 		const formatSongRow = async (id: string) => {
 			const track = await getTrack(id);
-			let features: any = {};
+			let features: any = {
+				acousticness: 0,
+				danceability: 0,
+				energy: 0,
+				instrumentalness: 0,
+				liveness: 0,
+				loudness: 0,
+				speechiness: 0,
+				tempo: 0,
+				valence: 0
+			};
 
 			try {
 				features = await getTrackAudioFeatures(id);
 			} catch (e) {
 				console.log(`[Spotify] Audio features restricted for track ${id}. Using default values.`);
-				// Provide default values if audio features are restricted/unavailable
-				features = {
-					acousticness: 0,
-					danceability: 0,
-					energy: 0,
-					instrumentalness: 0,
-					liveness: 0,
-					loudness: 0,
-					speechiness: 0,
-					tempo: 0,
-					valence: 0
-				};
 			}
 
 			return {
@@ -73,19 +71,13 @@ export const actions = {
 		};
 
 		try {
-			// Fetch data for both tracks
-			const originalTrackData = await getTrack(originalId);
-			const coverTrackData = await getTrack(coverId);
-
 			const originalRow = await formatSongRow(originalId);
 			const coverRow = await formatSongRow(coverId);
 
-			// Insert songs (on conflict do nothing)
 			await db.insert(songs).values(originalRow).onConflictDoNothing();
 			await db.insert(songs).values(coverRow).onConflictDoNothing();
 
-			// Generate slug using the helper from the example
-			const slug = slugifyCover(coverTrackData.name, coverTrackData.artists[0].name);
+			const slug = slugifyCover(originalRow.name, originalRow.artists[0]);
 
 			await db.insert(covers).values({
 				originalId,

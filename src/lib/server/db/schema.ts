@@ -3,7 +3,7 @@ import { pgTable, serial, integer, text, timestamp, real, pgEnum } from 'drizzle
 export const genderEnum = pgEnum('gender', ['male', 'female', 'non-binary', 'other']);
 
 export const songs = pgTable('songs', {
-	id: text('id').primaryKey(), // Spotify Track ID
+	id: text('id').primaryKey(),
 	name: text('name').notNull(),
 	artists: text('artists').array().notNull(),
 	url: text('url').notNull(),
